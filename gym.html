@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronLifters Gym Lahore</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Oswald (Headings) and Inter (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neon: '#CCFF00', // The specific energetic yellow
+                        dark: '#0a0a0a',
+                        surface: '#121212',
+                        surfaceHighlight: '#1E1E1E'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right, rgba(0,0,0,0.9), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom neon glow effects */
+        .neon-text {
+            text-shadow: 0 0 10px rgba(204, 255, 0, 0.5);
+        }
+        .neon-border {
+            box-shadow: 0 0 5px rgba(204, 255, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .neon-border:hover {
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.6);
+            border-color: #CCFF00;
+        }
+        .clip-slant {
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+        
+        /* Smooth Scroll */
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-dark text-gray-300 font-sans antialiased selection:bg-neon selection:text-black">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dark/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-2">
+                    <i data-lucide="dumbbell" class="h-8 w-8 text-neon"></i>
+                    <span class="text-2xl font-heading font-bold text-white tracking-wider uppercase">Iron<span class="text-neon">Lifters</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="hover:text-neon transition-colors font-semibold uppercase tracking-wide text-sm">Home</a>
+                        <a href="#services" class="hover:text-neon transition-colors font-semibold uppercase tracking-wide text-sm">Services</a>
+                        <a href="#pricing" class="hover:text-neon transition-colors font-semibold uppercase tracking-wide text-sm">Membership</a>
+                        <a href="#join" class="bg-neon text-black px-5 py-2 rounded-sm font-bold font-heading uppercase hover:bg-white transition-colors">Join Now</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="text-white hover:text-neon">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-surface border-t border-white/10">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-white hover:text-neon font-heading uppercase">Home</a>
+                <a href="#services" class="block px-3 py-2 text-white hover:text-neon font-heading uppercase">Services</a>
+                <a href="#pricing" class="block px-3 py-2 text-white hover:text-neon font-heading uppercase">Membership</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen pt-32 pb-48 bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed flex items-center justify-start clip-slant">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-20">
+            <div class="max-w-3xl space-y-6 pt-10 md:pt-0">
+                <div class="flex items-center gap-2 text-neon font-bold tracking-widest uppercase text-sm animate-pulse">
+                    <span class="w-8 h-0.5 bg-neon"></span>
+                    Lahore's Premier Gym
+                </div>
+                <h1 class="text-6xl md:text-8xl font-heading font-bold text-white uppercase leading-none">
+                    Transform <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Your Body</span><br>
+                    <span class="text-neon neon-text">In 30 Days</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 max-w-xl">
+                    Stop making excuses. Join the IronLifters community and forge the physique you deserve with top-tier equipment and expert coaching.
+                </p>
+                <div class="pt-4 flex flex-col sm:flex-row gap-4">
+                    <a href="#pricing" class="bg-neon text-black px-8 py-4 rounded-sm font-bold font-heading text-xl uppercase tracking-wider hover:bg-white hover:scale-105 transition-all text-center">
+                        Start Today
+                    </a>
+                    <a href="#services" class="border-2 border-white text-white px-8 py-4 rounded-sm font-bold font-heading text-xl uppercase tracking-wider hover:bg-white hover:text-black hover:scale-105 transition-all text-center">
+                        Explore Programs
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+            <i data-lucide="chevron-down" class="text-white w-10 h-10"></i>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <div class="bg-neon text-black py-8 -mt-20 relative z-10 mx-4 md:mx-auto max-w-7xl transform -skew-x-6 border-4 border-black shadow-[10px_10px_0px_0px_rgba(255,255,255,0.1)]">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center transform skew-x-6">
+            <div>
+                <span class="block text-4xl font-heading font-bold">5000+</span>
+                <span class="text-sm font-bold uppercase tracking-wider opacity-80">Sq Ft Facility</span>
+            </div>
+            <div>
+                <span class="block text-4xl font-heading font-bold">24/7</span>
+                <span class="text-sm font-bold uppercase tracking-wider opacity-80">Access</span>
+            </div>
+            <div>
+                <span class="block text-4xl font-heading font-bold">15+</span>
+                <span class="text-sm font-bold uppercase tracking-wider opacity-80">Expert Trainers</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white uppercase mb-4">Our <span class="text-neon">Services</span></h2>
+                <div class="w-24 h-1 bg-neon mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="group relative bg-surface p-8 border border-white/5 hover:border-neon transition-colors duration-300">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="heart-pulse" class="w-24 h-24 text-neon"></i>
+                    </div>
+                    <div class="bg-surfaceHighlight w-16 h-16 flex items-center justify-center rounded-full mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10 group-hover:border-neon">
+                        <i data-lucide="activity" class="text-neon w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-white uppercase mb-3 group-hover:text-neon transition-colors">Cardio Zone</h3>
+                    <p class="text-gray-400 mb-6">High-intensity interval training (HIIT) areas equipped with modern treadmills, rowers, and assault bikes to melt fat fast.</p>
+                    <a href="#" class="inline-flex items-center text-sm font-bold text-white uppercase tracking-wider group-hover:text-neon">
+                        Learn More <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group relative bg-surface p-8 border border-white/5 hover:border-neon transition-colors duration-300">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="dumbbell" class="w-24 h-24 text-neon"></i>
+                    </div>
+                    <div class="bg-surfaceHighlight w-16 h-16 flex items-center justify-center rounded-full mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10 group-hover:border-neon">
+                        <i data-lucide="biceps-flexed" class="text-neon w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-white uppercase mb-3 group-hover:text-neon transition-colors">Heavy Lifting</h3>
+                    <p class="text-gray-400 mb-6">Dedicated powerlifting and bodybuilding zones. Squat racks, deadlift platforms, and tons of free weights.</p>
+                    <a href="#" class="inline-flex items-center text-sm font-bold text-white uppercase tracking-wider group-hover:text-neon">
+                        Learn More <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group relative bg-surface p-8 border border-white/5 hover:border-neon transition-colors duration-300">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                        <i data-lucide="users" class="w-24 h-24 text-neon"></i>
+                    </div>
+                    <div class="bg-surfaceHighlight w-16 h-16 flex items-center justify-center rounded-full mb-6 group-hover:scale-110 transition-transform duration-300 border border-white/10 group-hover:border-neon">
+                        <i data-lucide="user-check" class="text-neon w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-2xl font-heading font-bold text-white uppercase mb-3 group-hover:text-neon transition-colors">Personal Training</h3>
+                    <p class="text-gray-400 mb-6">1-on-1 coaching with Lahore's finest certified trainers to help you smash your fitness goals safely.</p>
+                    <a href="#" class="inline-flex items-center text-sm font-bold text-white uppercase tracking-wider group-hover:text-neon">
+                        Learn More <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-surfaceHighlight relative overflow-hidden">
+        <!-- Background Accents -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+             <div class="absolute -top-20 -right-20 w-96 h-96 bg-neon rounded-full blur-[128px]"></div>
+             <div class="absolute bottom-0 left-0 w-64 h-64 bg-gray-500 rounded-full blur-[100px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-heading font-bold text-white uppercase mb-4">Membership <span class="text-neon">Plans</span></h2>
+                <p class="text-gray-400">No hidden fees. Cancel anytime.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Student Plan -->
+                <div class="bg-surface border border-white/10 p-8 flex flex-col hover:border-gray-500 transition-colors duration-300 relative group">
+                    <h3 class="text-2xl font-heading font-bold text-white uppercase tracking-wider">Student Plan</h3>
+                    <div class="mt-4 flex items-baseline text-white">
+                        <span class="text-5xl font-bold font-heading">3000</span>
+                        <span class="ml-1 text-xl text-gray-400">PKR</span>
+                        <span class="ml-1 text-gray-500">/mo</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">Perfect for students with a valid ID. Access during off-peak hours.</p>
+                    
+                    <ul class="mt-8 space-y-4 flex-1">
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> Off-Peak Access (8AM - 4PM)
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> Cardio & Weight Zones
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> Locker Access
+                        </li>
+                        <li class="flex items-center text-gray-500 line-through">
+                            <i data-lucide="x" class="w-5 h-5 mr-3"></i> Guest Passes
+                        </li>
+                    </ul>
+
+                    <button class="mt-8 w-full border border-white text-white font-bold font-heading uppercase py-3 hover:bg-white hover:text-black transition-colors">
+                        Choose Student
+                    </button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="bg-black border-2 border-neon p-8 flex flex-col relative transform md:-translate-y-4 shadow-[0_0_30px_rgba(204,255,0,0.15)]">
+                    <div class="absolute top-0 right-0 bg-neon text-black text-xs font-bold px-3 py-1 uppercase tracking-wider">Most Popular</div>
+                    <h3 class="text-2xl font-heading font-bold text-white uppercase tracking-wider">Pro Athlete</h3>
+                    <div class="mt-4 flex items-baseline text-white">
+                        <span class="text-5xl font-bold font-heading text-neon">5000</span>
+                        <span class="ml-1 text-xl text-gray-400">PKR</span>
+                        <span class="ml-1 text-gray-500">/mo</span>
+                    </div>
+                    <p class="mt-4 text-gray-400 text-sm">Unlimited access for the serious lifter. No restrictions.</p>
+                    
+                    <ul class="mt-8 space-y-4 flex-1">
+                        <li class="flex items-center text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> 24/7 Unlimited Access
+                        </li>
+                        <li class="flex items-center text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> All Equipment Zones
+                        </li>
+                        <li class="flex items-center text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> Premium Locker & Sauna
+                        </li>
+                        <li class="flex items-center text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> 1 Free Personal Training Session
+                        </li>
+                         <li class="flex items-center text-white">
+                            <i data-lucide="check" class="w-5 h-5 text-neon mr-3"></i> Bring a Guest (Weekends)
+                        </li>
+                    </ul>
+
+                    <button class="mt-8 w-full bg-neon text-black font-bold font-heading uppercase py-3 hover:bg-white transition-colors hover:scale-105 transform duration-200">
+                        Join Pro
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i data-lucide="dumbbell" class="h-6 w-6 text-neon"></i>
+                        <span class="text-xl font-heading font-bold text-white tracking-wider uppercase">Iron<span class="text-neon">Lifters</span></span>
+                    </div>
+                    <p class="text-gray-500 text-sm">
+                        Forging elite fitness in the heart of Lahore. Join the movement.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-white font-heading uppercase font-bold mb-4">Location</h4>
+                    <p class="text-gray-400 text-sm">123 Gulberg III<br>Main Boulevard<br>Lahore, Pakistan</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-heading uppercase font-bold mb-4">Contact</h4>
+                    <p class="text-gray-400 text-sm">042-111-GYM-LHR<br>info@ironlifters.pk</p>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-heading uppercase font-bold mb-4">Social</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-neon transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-neon transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-neon transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-600 text-xs">
+                    &copy; 2024 IronLifters Gym Lahore. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-600 hover:text-white text-xs">Privacy Policy</a>
+                    <a href="#" class="text-gray-600 hover:text-white text-xs">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
