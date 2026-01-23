@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fade Studio | Luxury Grooming in Lahore</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES & RESET --- */
+        :root {
+            --bg-dark: #1a1a1a;
+            --bg-card: #252525;
+            --accent-gold: #d4af37;
+            --accent-gold-hover: #b5952f;
+            --text-white: #ffffff;
+            --text-grey: #cccccc;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Raleway', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
+        }
+
+        /* --- UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-heading);
+            color: var(--text-white);
+        }
+
+        .text-gold {
+            color: var(--accent-gold);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent-gold);
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--accent-gold);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* --- NAVBAR --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background-color: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--text-white);
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--accent-gold);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin-top: 0; /* Override section margin */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-grey);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .section-title .divider {
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-gold);
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            padding: 40px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-gold);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin-top: 15px;
+            font-family: var(--font-heading);
+        }
+
+        /* --- EXPERIENCE SECTION --- */
+        .experience {
+            background-color: var(--bg-card);
+            padding: 0;
+        }
+
+        .experience-layout {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .exp-image {
+            flex: 1 1 50%;
+            min-height: 400px;
+            background: url('https://images.unsplash.com/photo-1503951914875-befbb713346b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .exp-content {
+            flex: 1 1 50%;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .exp-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .exp-content p {
+            color: var(--text-grey);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .amenities {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .amenity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            padding: 60px 0 30px;
+            text-align: center;
+            border-top: 1px solid #333;
+        }
+
+        .footer-logo {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--text-white);
+        }
+
+        .footer-info {
+            color: var(--text-grey);
+            margin-bottom: 25px;
+        }
+
+        .social-icons {
+            margin-bottom: 30px;
+        }
+
+        .social-icons a {
+            color: var(--text-white);
+            font-size: 1.2rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--accent-gold);
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 40px;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav {
+                padding: 15px 5%;
+            }
+
+            .btn-nav {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+
+            .experience-layout {
+                flex-direction: column;
+            }
+
+            .exp-content {
+                padding: 40px 20px;
+            }
+
+            .exp-image {
+                min-height: 300px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">The Fade <span>Studio</span></div>
+        <a href="https://wa.me/923294420027" target="_blank" rel="noopener noreferrer" class="btn btn-nav">Book Now</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Look Sharp. <br><span class="text-gold">Feel Sharp.</span></h1>
+            <p>Premium grooming for the modern gentleman in the heart of Lahore.</p>
+            <a href="https://wa.me/923294420027" target="_blank" rel="noopener noreferrer" class="btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-scissors"></i>
+                    </div>
+                    <h3>Signature Haircut</h3>
+                    <p>Consultation, precision cut, wash, and style using premium products.</p>
+                    <span class="price">1500 PKR</span>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-user-tie"></i>
+                    </div>
+                    <h3>Beard Sculpting</h3>
+                    <p>Hot towel treatment, razor lineup, trim, and beard oil application.</p>
+                    <span class="price">1000 PKR</span>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa-solid fa-spa"></i>
+                    </div>
+                    <h3>Royal Facial</h3>
+                    <p>Deep cleansing, exfoliation, steam, and massage for revitalized skin.</p>
+                    <span class="price">3000 PKR</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience" id="experience">
+        <div class="experience-layout">
+            <div class="exp-image"></div>
+            <div class="exp-content">
+                <h2>Not Just a Haircut</h2>
+                <div class="divider" style="margin: 0 0 30px 0;"></div>
+                <p>We believe grooming should be an experience, not a chore. Arrive early or stay late to unwind in our dedicated gentleman's lounge.</p>
+                
+                <div class="amenities">
+                    <div class="amenity">
+                        <i class="fa-solid fa-wifi"></i> Free WiFi
+                    </div>
+                    <div class="amenity">
+                        <i class="fa-solid fa-mug-hot"></i> Fresh Coffee
+                    </div>
+                </div>
+                
+                <p style="font-size: 0.9rem; margin-top: 10px;">Relax in leather recliners while waiting for your stylist.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">The Fade <span>Studio</span></div>
+            <p class="footer-info">Main Boulevard, Johar Town, Lahore</p>
+            <p class="footer-info">+92 300 1234567</p>
+            
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2026 The Fade Studio. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll implementation for browsers that don't support scroll-behavior: smooth in CSS
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple console log to confirm load
+        console.log("The Fade Studio loaded successfully.");
+    </script>
+</body>
+</html>
