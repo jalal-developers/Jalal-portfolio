@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aura Beauty Lounge | Luxury Salon & Bridal Studio in Lahore</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --color-bg: #FCFBF9; /* Pearl White */
+            --color-text: #2C2C2C; /* Charcoal Grey */
+            --color-text-light: #5A5A5A;
+            --color-accent: #C5A397; /* Soft Rose Gold */
+            --color-accent-hover: #A88173; /* Deeper Rose Gold */
+            --color-white: #FFFFFF;
+            --color-whatsapp: #25D366;
+            
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+            
+            --transition: all 0.3s ease-in-out;
+            --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 15px 40px rgba(197, 163, 151, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            box-shadow: 0 4px 15px rgba(197, 163, 151, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(197, 163, 151, 0.6);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-text);
+            border: 1px solid var(--color-text);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-text);
+            color: var(--color-white);
+        }
+
+        /* --- NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(252, 251, 249, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-text);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-accent);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--color-text);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            min-height: 600px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px; /* Offset for navbar */
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* High-end bridal makeup image */
+            background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.6));
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            color: var(--color-white);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            margin-bottom: 40px;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .section-padding {
+            padding: 100px 20px;
+        }
+
+        .about {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--color-text);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--color-accent);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: var(--color-text-light);
+            margin-top: 30px;
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services-wrapper {
+            background-color: var(--color-white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+        }
+
+        .service-card {
+            background: var(--color-bg);
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow-subtle);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: var(--color-accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--color-accent);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .service-list {
+            list-style: none;
+        }
+
+        .service-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            color: var(--color-text-light);
+        }
+
+        .service-price {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-container {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            aspect-ratio: 4/5;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(44, 44, 44, 0.4);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* --- FOOTER & CONTACT --- */
+        footer {
+            background-color: #1A1A1A;
+            color: var(--color-white);
+            padding: 80px 20px 40px;
+        }
+
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--color-accent);
+        }
+
+        .footer-col p, .footer-col a {
+            color: #AAAAAA;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .footer-col a:hover {
+            color: var(--color-white);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        /* --- FLOATING WHATSAPP BUTTON --- */
+        .wa-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--color-whatsapp);
+            color: #FFF;
+            border-radius: 50px;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            transition: var(--transition);
+            animation: bounceIn 1s ease-out;
+        }
+
+        .wa-float:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 12px 30px rgba(37, 211, 102, 0.5);
+            color: #fff;
+        }
+
+        .wa-float svg {
+            width: 28px;
+            height: 28px;
+            fill: currentColor;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
+            60% { opacity: 1; transform: scale(1.05) translateY(-5px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* --- MEDIA QUERIES (MOBILE FIRST FOCUS) --- */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-bg);
+                flex-direction: column;
+                padding: 20px 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Hidden by default */
+                transition: clip-path 0.4s ease-in-out;
+            }
+
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+
+            .nav-links a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links .btn-primary {
+                margin-top: 10px;
+                width: 80%;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .wa-float {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px;
+                border-radius: 50%; /* Make it a circle on mobile to save space */
+            }
+
+            .wa-float span {
+                display: none; /* Hide text on mobile, just show icon */
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header id="header">
+        <div class="nav-container">
+            <div class="logo">Aura.</div>
+            
+            <!-- Hamburger Icon for Mobile -->
+            <button class="mobile-menu-btn" onclick="toggleMenu()">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#about" onclick="toggleMenu()">About</a>
+                <a href="#services" onclick="toggleMenu()">Services</a>
+                <a href="#gallery" onclick="toggleMenu()">Lookbook</a>
+                <a href="https://wa.me/923294420027" class="btn btn-primary" style="color:white;" target="_blank" rel="noopener noreferrer">Book Now</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Radiant Beauty. Flawless Style.</h1>
+            <p>Lahore’s premier destination for luxury bridal makeovers and advanced hair aesthetics.</p>
+            <a href="https://wa.me/923294420027" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Book via WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section-padding">
+        <div class="about">
+            <h2 class="section-title">Elevating Your Natural Elegance</h2>
+            <p>At Aura Beauty Lounge, we believe true beauty lies in the details. Our team of master stylists and acclaimed makeup artists use only the finest international products to curate a look that is distinctively yours. Whether it's your wedding day or a routine touch-up, experience unparalleled pampering in an environment designed for pure relaxation.</p>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="section-padding services-wrapper">
+        <div class="about">
+            <h2 class="section-title">Signature Services</h2>
+            <p>Tailored treatments designed for the modern woman.</p>
+        </div>
+        
+        <div class="services-grid">
+            <!-- Card 1 -->
+            <div class="service-card">
+                <div class="service-icon">✧</div>
+                <h3>Bridal & Valima</h3>
+                <ul class="service-list">
+                    <li><span>Signature Bridal Makeover</span> <span class="service-price">Rs. 65,000</span></li>
+                    <li><span>Valima Glamour Look</span> <span class="service-price">Rs. 50,000</span></li>
+                    <li><span>Luxury Party Makeup</span> <span class="service-price">Rs. 15,000</span></li>
+                    <li><span>Pre-Bridal Glow Package</span> <span class="service-price">Rs. 25,000</span></li>
+                </ul>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="service-card">
+                <div class="service-icon">✂</div>
+                <h3>Hair Care & Styling</h3>
+                <ul class="service-list">
+                    <li><span>Balayage & Highlights</span> <span class="service-price">Rs. 18,000+</span></li>
+                    <li><span>Keratin / Protein Treatment</span> <span class="service-price">Rs. 12,000+</span></li>
+                    <li><span>Signature Master Cut</span> <span class="service-price">Rs. 5,000</span></li>
+                    <li><span>Luxury Blowout & Styling</span> <span class="service-price">Rs. 3,500</span></li>
+                </ul>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="service-card">
+                <div class="service-icon">✦</div>
+                <h3>Advanced Aesthetics</h3>
+                <ul class="service-list">
+                    <li><span>Signature HydraFacial</span> <span class="service-price">Rs. 12,000</span></li>
+                    <li><span>Dermaplaning Radiance</span> <span class="service-price">Rs. 8,500</span></li>
+                    <li><span>Organic Spa Manicure</span> <span class="service-price">Rs. 3,000</span></li>
+                    <li><span>Organic Spa Pedicure</span> <span class="service-price">Rs. 3,500</span></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY SECTION -->
+    <section id="gallery" class="section-padding">
+        <div class="about">
+            <h2 class="section-title">Digital Lookbook</h2>
+            <p>Glimpses of the flawless artistry crafted by our experts.</p>
+        </div>
+
+        <div class="gallery-container">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?q=80&w=600&auto=format&fit=crop" alt="Bridal Makeup Artistry">
+                <div class="gallery-overlay"><a href="https://wa.me/923294420027" class="btn btn-outline" style="color:white; border-color:white;" target="_blank" rel="noopener noreferrer">Book This Look</a></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600&auto=format&fit=crop" alt="Luxury Hair Styling">
+                <div class="gallery-overlay"><a href="https://wa.me/923294420027" class="btn btn-outline" style="color:white; border-color:white;" target="_blank" rel="noopener noreferrer">Book This Look</a></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop" alt="Aesthetics and Facials">
+                <div class="gallery-overlay"><a href="https://wa.me/923294420027" class="btn btn-outline" style="color:white; border-color:white;" target="_blank" rel="noopener noreferrer">Book This Look</a></div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?q=80&w=600&auto=format&fit=crop" alt="Nail Art and Manicure">
+                <div class="gallery-overlay"><a href="https://wa.me/923294420027" class="btn btn-outline" style="color:white; border-color:white;" target="_blank" rel="noopener noreferrer">Book This Look</a></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4 style="font-family: var(--font-heading); font-size: 1.8rem; color: white; margin-bottom: 10px;">Aura.</h4>
+                <p>Elevating natural beauty through exceptional artistry and luxurious care.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Visit Us</h4>
+                <p>12-A, M.M. Alam Road</p>
+                <p>Gulberg III, Lahore, Pakistan</p>
+            </div>
+            <div class="footer-col">
+                <h4>Business Hours</h4>
+                <p>Tuesday - Sunday</p>
+                <p>11:00 AM - 8:00 PM</p>
+                <p>Monday: Closed</p>
+            </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="https://wa.me/923294420027" target="_blank" rel="noopener noreferrer">WhatsApp: +92 329 4420027</a>
+                <a href="#">Instagram: @AuraBeautyLounge</a>
+                <a href="#">Facebook: /AuraBeautyLounge</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Aura Beauty Lounge. Designed for seamless booking.</p>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP CTA -->
+    <a href="https://wa.me/923294420027" class="wa-float" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+        </svg>
+        <span>Book on WhatsApp</span>
+    </a>
+
+    <!-- SCRIPT FOR MOBILE MENU & SCROLL EFFECTS -->
+    <script>
+        // Toggle Mobile Menu
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            if (window.innerWidth <= 768) {
+                navLinks.classList.toggle('active');
+            }
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.05)';
+                header.style.padding = '5px 0';
+            } else {
+                header.style.boxShadow = 'none';
+                header.style.padding = '0';
+            }
+        });
+    </script>
+
+</body>
+</html>
