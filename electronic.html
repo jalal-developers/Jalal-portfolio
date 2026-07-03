@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectraRise | Professional Electrical Services</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        electra: {
+                            black: '#0a0a0a',
+                            dark: '#1a1a1a',
+                            yellow: '#ffcc00', // Matches the lightning bolt
+                            gray: '#f4f4f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for enhancements */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .hero-pattern {
+            background-color: #0a0a0a;
+            background-image: radial-gradient(rgba(255, 204, 0, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        /* Mobile tap highlight removal for cleaner feel */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Floating WhatsApp Animation */
+        .whatsapp-float {
+            animation: float-bounce 3s ease-in-out infinite;
+        }
+        @keyframes float-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+    </style>
+</head>
+<body class="bg-electra-gray text-gray-800 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="fixed w-full top-0 z-50 glass-nav border-b border-gray-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img src="images/ElectraRise_logo.png" alt="ElectraRise Logo" class="h-12 w-12 object-contain drop-shadow-[0_0_8px_rgba(255,204,0,0.5)]">
+                    <span class="font-serif font-bold text-2xl tracking-wide text-white uppercase hidden sm:block">ElectraRise</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-electra-yellow transition-colors font-medium text-sm uppercase tracking-wider">Home</a>
+                    <a href="#services" class="text-gray-300 hover:text-electra-yellow transition-colors font-medium text-sm uppercase tracking-wider">Services</a>
+                    <a href="#contact" class="text-gray-300 hover:text-electra-yellow transition-colors font-medium text-sm uppercase tracking-wider">Contact</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-electra-yellow focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-electra-dark border-b border-gray-800">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <a href="#home" class="mobile-link text-gray-300 hover:text-electra-yellow block px-3 py-3 rounded-md text-base font-medium">Home</a>
+                <a href="#services" class="mobile-link text-gray-300 hover:text-electra-yellow block px-3 py-3 rounded-md text-base font-medium">Services</a>
+                <a href="#contact" class="mobile-link text-gray-300 hover:text-electra-yellow block px-3 py-3 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-20 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 overflow-hidden hero-pattern min-h-[90vh] flex items-center">
+        <!-- Subtle background glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-electra-yellow opacity-10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
+            
+            <!-- Large Logo for Mobile Hero Focus -->
+            <img src="images/ElectraRise_logo.png" alt="ElectraRise Logo Large" class="reveal w-48 h-48 md:w-64 md:h-64 object-contain drop-shadow-[0_0_25px_rgba(255,204,0,0.3)] mb-8">
+
+            <h1 class="reveal delay-100 text-4xl sm:text-5xl md:text-7xl font-serif font-bold text-white mb-4 leading-tight tracking-tight">
+                Empowering <br class="md:hidden">
+                <span class="text-electra-yellow italic">Progress</span>
+            </h1>
+            
+            <p class="reveal delay-200 mt-4 max-w-2xl text-lg sm:text-xl text-gray-400 font-light mb-10">
+                Professional electrical services you can trust. We bring power, safety, and innovation to your doorstep.
+            </p>
+            
+            <div class="reveal delay-300 flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="tel:+923104327333" class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 border border-transparent text-base font-bold rounded-lg text-electra-black bg-electra-yellow hover:bg-yellow-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-electra-black focus:ring-electra-yellow transition-all shadow-[0_0_15px_rgba(255,204,0,0.4)] hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(255,204,0,0.6)]">
+                    <i class="fa-solid fa-phone mr-2"></i> Call Now
+                </a>
+                <a href="#contact" class="w-full sm:w-auto inline-flex justify-center items-center px-8 py-4 border-2 border-gray-600 text-base font-bold rounded-lg text-white hover:border-electra-yellow hover:text-electra-yellow focus:outline-none transition-all hover:-translate-y-1">
+                    Find Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-xs font-bold text-electra-yellow tracking-widest uppercase mb-2">Our Expertise</h2>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-electra-black">Professional Solutions</h3>
+                <div class="w-20 h-1 bg-electra-yellow mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service Card 1 -->
+                <div class="reveal delay-100 bg-electra-gray rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md mb-6 text-electra-yellow group-hover:bg-electra-yellow group-hover:text-electra-black transition-colors">
+                        <i class="fa-solid fa-house text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-electra-black mb-3">Residential</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Complete home wiring, lighting installations, and safety inspections ensuring your family's comfort and security.
+                    </p>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="reveal delay-200 bg-electra-gray rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group relative overflow-hidden hover:-translate-y-2">
+                    <!-- Featured Badge -->
+                    <div class="absolute top-0 right-0 bg-electra-yellow text-electra-black text-xs font-bold px-3 py-1 rounded-bl-lg">POPULAR</div>
+                    <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md mb-6 text-electra-yellow group-hover:bg-electra-yellow group-hover:text-electra-black transition-colors">
+                        <i class="fa-solid fa-building text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-electra-black mb-3">Commercial</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        Robust electrical setups for businesses, heavy machinery wiring, and energy-efficient lighting upgrades.
+                    </p>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="reveal delay-300 bg-electra-gray rounded-2xl p-8 border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-md mb-6 text-electra-yellow group-hover:bg-electra-yellow group-hover:text-electra-black transition-colors">
+                        <i class="fa-solid fa-wrench text-2xl"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-electra-black mb-3">Maintenance</h4>
+                    <p class="text-gray-600 leading-relaxed">
+                        24/7 emergency repairs, fault finding, and regular maintenance to prevent costly downtimes.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Location Section -->
+    <section id="contact" class="py-16 md:py-24 bg-electra-dark text-white border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+                
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="reveal text-3xl md:text-4xl font-serif font-bold mb-6">Ready to get started?</h2>
+                    <p class="reveal delay-100 text-gray-400 mb-10 text-lg">
+                        Reach out to us for a consultation or emergency services. We are dedicated to providing top-tier electrical solutions.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start reveal delay-100">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-electra-yellow">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold">Location</h4>
+                                <p class="text-gray-400 mt-1">Quetta, Balochistan, Pakistan</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start reveal delay-200">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-electra-yellow">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold">Email Us</h4>
+                                <p class="text-gray-400 mt-1 hover:text-electra-yellow transition-colors"><a href="mailto:manahilelectrarise36@gmail.com">manahilelectrarise36@gmail.com</a></p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start reveal delay-300">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-electra-yellow">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-bold">Call Us</h4>
+                                <p class="text-gray-400 mt-1 hover:text-electra-yellow transition-colors"><a href="tel:+923104327333">+92 310 4327333</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons for Links Provided -->
+                    <div class="mt-10 flex flex-col sm:flex-row gap-4 reveal delay-300">
+                        <!-- Redesigned Google Maps Button -->
+                        <a href="https://www.google.com/maps/place/ElectraRise/@30.1814288,66.9876324,15z/data=!4m6!3m5!1s0x3ed2e1ce48a396f3:0xcacbdd35a3bf1db9!8m2!3d30.1814288!4d66.9876324!16s%2Fg%2F11zbcr5v3w" target="_blank" rel="noopener noreferrer" class="group relative inline-flex justify-center items-center px-6 py-3 bg-white text-gray-900 font-bold rounded-xl overflow-hidden shadow-[0_4px_15px_rgba(255,255,255,0.1)] hover:shadow-[0_8px_25px_rgba(255,255,255,0.2)] transition-all duration-300 hover:-translate-y-1">
+                            <div class="absolute inset-0 bg-gray-100 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"></div>
+                            <span class="relative flex items-center gap-2">
+                                <i class="fa-solid fa-map-location-dot text-blue-600 text-xl"></i> View on Maps
+                            </span>
+                        </a>
+                        
+                        <!-- Redesigned Facebook Button -->
+                        <a href="https://www.facebook.com/people/Electra-Rise/pfbid0vtWpY5ZBCtL89X53GDfxeY9RxK4KhvWvhewhtZgqchuYcNiW8iRsB4SyV6LYRjvql/" target="_blank" rel="noopener noreferrer" class="group inline-flex justify-center items-center px-6 py-3 bg-gradient-to-r from-[#1877F2] to-[#0d5cbf] text-white font-bold rounded-xl shadow-[0_4px_15px_rgba(24,119,242,0.3)] hover:shadow-[0_8px_25px_rgba(24,119,242,0.4)] transition-all duration-300 hover:-translate-y-1">
+                            <i class="fa-brands fa-facebook text-xl mr-2 group-hover:scale-110 transition-transform"></i> Facebook Page
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Interactive Embedded Map Restored -->
+                <div class="reveal delay-200 relative h-80 sm:h-96 w-full rounded-2xl overflow-hidden border-4 border-gray-800 shadow-2xl group">
+                    <!-- Embedded Google Map using the provided coordinates -->
+                    <iframe src="https://maps.google.com/maps?q=30.1814288,66.9876324&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" class="grayscale group-hover:grayscale-0 transition-all duration-500 ease-in-out"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-electra-black py-8 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <img src="images/ElectraRise_logo.png" alt="ElectraRise Logo Small" class="h-10 w-10 object-contain">
+                <span class="text-white font-serif font-bold tracking-wider">ELECTRARISE</span>
+            </div>
+            <p class="text-gray-500 text-sm text-center md:text-left">
+                &copy; <span id="year"></span> ElectraRise. All rights reserved.
+            </p>
+            <div class="flex space-x-4">
+                <a href="https://www.facebook.com/people/Electra-Rise/pfbid0vtWpY5ZBCtL89X53GDfxeY9RxK4KhvWvhewhtZgqchuYcNiW8iRsB4SyV6LYRjvql/" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-electra-yellow transition-colors"><i class="fa-brands fa-facebook text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-electra-yellow transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                <a href="#" class="text-gray-500 hover:text-electra-yellow transition-colors"><i class="fa-brands fa-whatsapp text-xl"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923104327333?text=Hello%20ElectraRise!%20I%20am%20looking%20for%20professional%20electrical%20services." target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white w-16 h-16 rounded-full flex items-center justify-center text-3xl shadow-[0_4px_14px_0_rgba(37,211,102,0.39)] hover:shadow-[0_6px_25px_rgba(37,211,102,0.6)] hover:scale-110 transition-all duration-300 whatsapp-float group">
+        <i class="fa-brands fa-whatsapp z-10 group-hover:rotate-12 transition-transform"></i>
+        <!-- Ping effect -->
+        <span class="absolute inset-0 rounded-full border-2 border-[#25D366] animate-ping opacity-75"></span>
+    </a>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const icon = btn.querySelector('i');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            if(menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(!menu.classList.contains('hidden')) {
+                    toggleMenu();
+                }
+            });
+        });
+
+        // Scroll Reveal Animation Logic
+        function revealElements() {
+            const reveals = document.querySelectorAll('.reveal');
+            
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 50; // Trigger point
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', revealElements);
+        
+        // Trigger once on load to show elements already in view
+        setTimeout(revealElements, 100);
+    </script>
+</body>
+</html>
