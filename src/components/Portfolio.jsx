@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dumbbell, Scissors, Flower2, Car } from 'lucide-react'
+import { Dumbbell, Scissors, Flower2, Car, Cpu } from 'lucide-react'
 
 export default function Portfolio() {
   const projects = [
@@ -34,6 +34,14 @@ export default function Portfolio() {
       tags: ['Design', 'Performance'],
       image: <Car size={48} className="text-gray-300" />,
       link: '/CarRental.html',
+    },
+    {
+      id: 5,
+      title: 'Electronic UI',
+      description: 'Modern e-commerce interface for electronic devices.',
+      tags: ['E-commerce', 'Design'],
+      image: <Cpu size={48} className="text-gray-300" />,
+      link: '/electronic.html',
     },
   ]
 
