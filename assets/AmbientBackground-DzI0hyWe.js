@@ -1,0 +1,1 @@
+import{n as e,r as t}from"./index-HuzhcYQZ.js";t();var n=e();function r(){return(0,n.jsxs)(`div`,{className:`ambient-bg`,children:[(0,n.jsx)(`div`,{className:`blob blob-1`}),(0,n.jsx)(`div`,{className:`blob blob-2`})]})}export{r as default};
