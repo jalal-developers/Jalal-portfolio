@@ -1,12 +1,12 @@
 import React, { useEffect, Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
-import SkillsTicker from './components/SkillsTicker'
-import AmbientBackground from './components/AmbientBackground'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import './index.css'
 
+const AmbientBackground = lazy(() => import('./components/AmbientBackground'))
+const SkillsTicker = lazy(() => import('./components/SkillsTicker'))
 const Services = lazy(() => import('./components/Services'))
 const Portfolio = lazy(() => import('./components/Portfolio'))
 const Pricing = lazy(() => import('./components/Pricing'))
@@ -23,11 +23,11 @@ export default function App() {
 
   return (
     <main className="app">
-      <AmbientBackground />
       <Navbar />
       <Hero />
-      <SkillsTicker />
-      <Suspense fallback={<div style={{minHeight: '100vh'}} />}>
+      <Suspense fallback={<div style={{minHeight: '10vh'}} />}>
+        <AmbientBackground />
+        <SkillsTicker />
         <Services />
         <Portfolio />
         <Pricing />
