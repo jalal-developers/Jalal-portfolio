@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Send, Sparkles } from 'lucide-react'
-import profileImg from '../assets/JalalProfile1.jpeg'
+import profileImg from '../assets/JalalProfile1.webp'
 
 export default function Hero() {
   const [isClicked, setIsClicked] = useState(false);

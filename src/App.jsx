@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import SkillsTicker from './components/SkillsTicker'
-import Services from './components/Services'
-import Portfolio from './components/Portfolio'
-import Pricing from './components/Pricing'
-import Footer from './components/Footer'
 import AmbientBackground from './components/AmbientBackground'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import './index.css'
+
+const Services = lazy(() => import('./components/Services'))
+const Portfolio = lazy(() => import('./components/Portfolio'))
+const Pricing = lazy(() => import('./components/Pricing'))
+const Footer = lazy(() => import('./components/Footer'))
 
 export default function App() {
   useEffect(() => {
@@ -21,15 +22,17 @@ export default function App() {
   }, [])
 
   return (
-    <div className="app">
+    <main className="app">
       <AmbientBackground />
       <Navbar />
       <Hero />
       <SkillsTicker />
-      <Services />
-      <Portfolio />
-      <Pricing />
-      <Footer />
-    </div>
+      <Suspense fallback={<div style={{minHeight: '100vh'}} />}>
+        <Services />
+        <Portfolio />
+        <Pricing />
+        <Footer />
+      </Suspense>
+    </main>
   )
 }

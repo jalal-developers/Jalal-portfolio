@@ -8,10 +8,10 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-container">
-        <div className="navbar-logo flex items-center gap-2">
-          <img src="/logo.png" alt="Jalal Dev Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
-          <h1>Jalal Dev</h1>
-        </div>
+        <a href="#" className="navbar-logo flex items-center gap-2">
+          <img src="/logo.webp" alt="Jalal Dev Logo" style={{ width: '32px', height: '32px', objectFit: 'contain' }} />
+          <span>Jalal Dev</span>
+        </a>
         <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
           <a href="#home" className="navbar-link">Home</a>
           <a href="#services" className="navbar-link">Services</a>
