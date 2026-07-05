@@ -14,11 +14,14 @@ const Footer = lazy(() => import('./components/Footer'))
 
 export default function App() {
   useEffect(() => {
-    AOS.init({
-      duration: 800,
-      once: true,
-      easing: 'ease-in-out',
-    })
+    // Defer AOS initialization to prevent forced synchronous reflows during initial load
+    setTimeout(() => {
+      AOS.init({
+        duration: 800,
+        once: true,
+        easing: 'ease-in-out',
+      })
+    }, 0);
   }, [])
 
   return (
