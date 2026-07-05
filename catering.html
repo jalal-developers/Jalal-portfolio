@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lahore Catering & Decor Co. | Premium Events</title>
+    
+    <!-- Google Fonts: Playfair Display for classic headings, Inter for modern body text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- GSAP & ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#0f172a', /* Charcoal/Navy */
+                        gold: '#d4af37',    /* Metallic Gold */
+                        pearl: '#faf9f6',   /* Off-white */
+                        dark: '#1e293b'
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #faf9f6;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #faf9f6; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b5952f; 
+        }
+
+        /* Image Masking & Overlays */
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));
+        }
+
+        /* Hide elements initially for GSAP reveal */
+        .gsap-reveal, .gsap-stagger-item, .gsap-scale {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Clip path for modern image reveal */
+        .clip-reveal {
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        }
+
+        .hover-gold-line::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+        .hover-gold-line:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-gold selection:text-white">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 bg-transparent text-white">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl md:text-3xl font-serif font-bold tracking-wider z-50 relative">
+                L<span class="text-gold">'</span>C<span class="text-gold">&</span>D
+            </a>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center font-medium tracking-wide text-sm">
+                <a href="#about" class="relative hover-gold-line transition-colors hover:text-gold">About</a>
+                <a href="#services" class="relative hover-gold-line transition-colors hover:text-gold">Services</a>
+                <a href="#menu" class="relative hover-gold-line transition-colors hover:text-gold">Culinary</a>
+                <a href="#gallery" class="relative hover-gold-line transition-colors hover:text-gold">Gallery</a>
+                <a href="#contact" class="px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-white transition-all duration-300 rounded-sm">Consultation</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl z-50 relative focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-primary bg-opacity-95 backdrop-blur-md flex flex-col justify-center items-center space-y-8 opacity-0 pointer-events-none transition-opacity duration-300 z-40">
+            <a href="#about" class="mobile-link text-2xl font-serif hover:text-gold transition-colors">About Story</a>
+            <a href="#services" class="mobile-link text-2xl font-serif hover:text-gold transition-colors">Our Services</a>
+            <a href="#menu" class="mobile-link text-2xl font-serif hover:text-gold transition-colors">The Menu</a>
+            <a href="#gallery" class="mobile-link text-2xl font-serif hover:text-gold transition-colors">Gallery</a>
+            <a href="#contact" class="mobile-link text-2xl font-serif text-gold border-b border-gold pb-1">Get in Touch</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <!-- Parallax Background Image -->
+        <div class="absolute inset-0 w-full h-full z-0">
+            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1920&q=80" 
+                 alt="Luxury Wedding Setup" 
+                 class="hero-img w-full h-full object-cover transform scale-110"
+                 onerror="this.src='https://placehold.co/1920x1080/0f172a/d4af37?text=Luxury+Event'">
+            <div class="image-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <p class="hero-text text-gold tracking-[0.3em] text-sm md:text-base uppercase mb-4 font-medium">Lahore's Premier Event Artisans</p>
+            <h1 class="hero-title text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif text-white mb-4 md:mb-6 leading-tight">
+                Crafting <span class="italic text-gold border-b-2 border-gold pb-1 md:pb-2">Timeless</span> <br class="hidden sm:block"> Memories.
+            </h1>
+            <p class="hero-text text-gray-200 text-base md:text-lg lg:text-xl font-light mb-8 md:mb-10 max-w-2xl mx-auto px-2">
+                Bespoke catering and exquisite thematic decor for weddings, corporate galas, and intimate gatherings across Lahore.
+            </p>
+            <div class="hero-btn opacity-0">
+                <a href="#services" class="inline-block bg-gold text-primary font-semibold px-6 py-3 md:px-8 md:py-4 rounded-sm tracking-wide text-sm md:text-base hover:bg-white transition-colors duration-300">
+                    Discover Our World
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-white opacity-70 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 lg:py-32 bg-pearl relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-16">
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2 space-y-4 md:space-y-6 text-center lg:text-left">
+                    <div class="gsap-reveal flex items-center justify-center lg:justify-start space-x-4 mb-2 md:mb-4">
+                        <div class="w-8 md:w-12 h-[1px] bg-gold"></div>
+                        <span class="text-gold tracking-widest uppercase text-xs md:text-sm font-semibold">Our Legacy</span>
+                        <div class="w-8 h-[1px] bg-gold lg:hidden"></div>
+                    </div>
+                    <h2 class="gsap-reveal text-3xl md:text-4xl lg:text-5xl font-serif text-primary leading-tight">
+                        A Heritage of <br class="hidden md:block"> Taste & Elegance
+                    </h2>
+                    <p class="gsap-reveal text-gray-600 font-light text-base md:text-lg leading-relaxed pt-2 md:pt-4">
+                        Rooted in the heart of Lahore, we blend the rich, traditional flavors of Mughal heritage with contemporary culinary artistry. Our design philosophy transcends the ordinary, transforming empty spaces into breathtaking experiences.
+                    </p>
+                    <p class="gsap-reveal text-gray-600 font-light text-base md:text-lg leading-relaxed">
+                        Whether it is a royal Barat, an elegant Walima, or a high-profile corporate summit, our meticulous attention to detail ensures your event is flawless, unforgettable, and uniquely yours.
+                    </p>
+                    <div class="gsap-reveal pt-4 md:pt-6 flex flex-col items-center lg:items-start">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Signature_placeholder.svg/150px-Signature_placeholder.svg.png" alt="Signature" class="h-10 md:h-12 opacity-60 filter grayscale" onerror="this.style.display='none'">
+                        <p class="mt-2 font-serif font-bold text-primary text-sm md:text-base">Master Chef & Event Director</p>
+                    </div>
+                </div>
+
+                <!-- Image Collage -->
+                <div class="w-full lg:w-1/2 relative h-[350px] sm:h-[450px] lg:h-[600px] mt-8 lg:mt-0 gsap-stagger-parent">
+                    <div class="absolute top-0 right-0 w-3/4 h-4/5 overflow-hidden rounded-tl-[3rem] rounded-br-2xl md:rounded-tl-full md:rounded-br-3xl shadow-2xl z-10">
+                        <img src="https://images.unsplash.com/photo-1548365328-8c6db3220e4c?auto=format&fit=crop&w=800&q=80" 
+                             alt="Gourmet Food" 
+                             class="w-full h-full object-cover gsap-scale">
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-2/3 h-2/3 overflow-hidden rounded-tr-[3rem] rounded-bl-2xl md:rounded-tr-full md:rounded-bl-3xl shadow-2xl border-4 border-pearl z-20">
+                        <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80" 
+                             alt="Event Decor" 
+                             class="w-full h-full object-cover gsap-scale">
+                    </div>
+                    <!-- Decorative Element -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 md:w-32 md:h-32 border border-gold rounded-full z-0 opacity-50 gsap-reveal"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 md:py-24 bg-primary text-white relative">
+        <!-- Subtle Pattern Overlay -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-10 md:mb-16">
+                <span class="gsap-reveal text-gold tracking-widest uppercase text-xs md:text-sm font-semibold block mb-2 md:mb-3">What We Do</span>
+                <h2 class="gsap-reveal text-3xl md:text-4xl lg:text-5xl font-serif">Curated Services</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 gsap-stagger-parent">
+                
+                <!-- Service 1 -->
+                <div class="gsap-stagger-item group relative h-[320px] md:h-[400px] overflow-hidden cursor-pointer rounded-sm">
+                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=800&q=80" alt="Wedding Events" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                        <i class="fas fa-rings text-2xl md:text-3xl text-gold mb-3 md:mb-4 lg:transform lg:translate-y-4 lg:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i>
+                        <h3 class="text-xl md:text-2xl font-serif mb-2 lg:transform lg:translate-y-4 group-hover:-translate-y-2 transition-transform duration-500">Wedding Extravaganza</h3>
+                        <p class="text-gray-200 lg:text-gray-300 font-light text-xs md:text-sm lg:opacity-0 lg:h-0 group-hover:opacity-100 group-hover:h-auto lg:transform lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">From majestic Barats to elegant Walimas, we provide end-to-end management, floral decor, and grand feasts.</p>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="gsap-stagger-item group relative h-[320px] md:h-[400px] overflow-hidden cursor-pointer rounded-sm lg:-mt-8">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=800&q=80" alt="Live Cooking" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                        <i class="fas fa-fire-burner text-2xl md:text-3xl text-gold mb-3 md:mb-4 lg:transform lg:translate-y-4 lg:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i>
+                        <h3 class="text-xl md:text-2xl font-serif mb-2 lg:transform lg:translate-y-4 group-hover:-translate-y-2 transition-transform duration-500">Live Culinary Stations</h3>
+                        <p class="text-gray-200 lg:text-gray-300 font-light text-xs md:text-sm lg:opacity-0 lg:h-0 group-hover:opacity-100 group-hover:h-auto lg:transform lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">Interactive live BBQ, fresh Katakat, and exotic dessert bars that engage and delight your guests.</p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="gsap-stagger-item group relative h-[320px] md:h-[400px] overflow-hidden cursor-pointer rounded-sm">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0mz-OEJu8H6t-s8d7m_e6ZYLhEzQW9LqDt6oGqFnJIPyGXAY4yTEXXBhM&s=10" alt="Corporate Events" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 transition-opacity duration-300"></div>
+                    <div class="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                        <i class="fas fa-briefcase text-2xl md:text-3xl text-gold mb-3 md:mb-4 lg:transform lg:translate-y-4 lg:opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500"></i>
+                        <h3 class="text-xl md:text-2xl font-serif mb-2 lg:transform lg:translate-y-4 group-hover:-translate-y-2 transition-transform duration-500">Corporate Galas</h3>
+                        <p class="text-gray-200 lg:text-gray-300 font-light text-xs md:text-sm lg:opacity-0 lg:h-0 group-hover:opacity-100 group-hover:h-auto lg:transform lg:translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">Sophisticated setups and hi-tea arrangements designed to impress clients and inspire your team.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Highlights -->
+    <section id="menu" class="py-16 md:py-24 bg-pearl relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row gap-10 lg:gap-12 items-center">
+                <div class="w-full lg:w-1/3 text-center lg:text-left">
+                    <div class="gsap-reveal flex items-center justify-center lg:justify-start space-x-4 mb-3 md:mb-4">
+                        <div class="w-8 md:w-12 h-[1px] bg-gold"></div>
+                        <span class="text-gold tracking-widest uppercase text-xs md:text-sm font-semibold">The Menu</span>
+                        <div class="w-8 h-[1px] bg-gold lg:hidden"></div>
+                    </div>
+                    <h2 class="gsap-reveal text-3xl md:text-4xl lg:text-5xl font-serif text-primary leading-tight mb-4 md:mb-6">
+                        Culinary <br class="hidden lg:block"> Masterpieces
+                    </h2>
+                    <p class="gsap-reveal text-gray-600 font-light text-sm md:text-base mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0">
+                        Our chefs use the finest ingredients to create diverse menus. From traditional rich Mughlai gravies to sophisticated Pan-Asian and Continental cuisines.
+                    </p>
+                    <a href="#contact" class="gsap-reveal inline-flex items-center text-primary font-semibold hover:text-gold transition-colors text-sm md:text-base">
+                        Request Full Menu <i class="fas fa-arrow-right ml-2 text-xs md:text-sm"></i>
+                    </a>
+                </div>
+
+                <div class="w-full lg:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 gsap-stagger-parent mt-8 lg:mt-0">
+                    <!-- Menu Item 1 -->
+                    <div class="gsap-stagger-item bg-white p-6 md:p-8 shadow-sm border-t-4 border-transparent hover:border-gold transition-all duration-300">
+                        <h4 class="text-lg md:text-xl font-serif text-primary mb-2">Pakistani Classics</h4>
+                        <p class="text-xs md:text-sm text-gray-500 mb-4">Mutton Karahi, Chicken Biryani, Palak Paneer, Hot Naans.</p>
+                        <div class="w-full h-[1px] bg-gray-100 mb-4"></div>
+                        <span class="text-[10px] md:text-xs tracking-widest text-gold uppercase font-bold">Most Loved</span>
+                    </div>
+                    <!-- Menu Item 2 -->
+                    <div class="gsap-stagger-item bg-white p-6 md:p-8 shadow-sm border-t-4 border-transparent hover:border-gold transition-all duration-300 md:mt-8">
+                        <h4 class="text-lg md:text-xl font-serif text-primary mb-2">Live BBQ & Grill</h4>
+                        <p class="text-xs md:text-sm text-gray-500 mb-4">Mutton Ribs, Reshmi Kebab, Malai Boti, Grilled Fish.</p>
+                        <div class="w-full h-[1px] bg-gray-100 mb-4"></div>
+                        <span class="text-[10px] md:text-xs tracking-widest text-gold uppercase font-bold">Interactive</span>
+                    </div>
+                    <!-- Menu Item 3 -->
+                    <div class="gsap-stagger-item bg-white p-6 md:p-8 shadow-sm border-t-4 border-transparent hover:border-gold transition-all duration-300">
+                        <h4 class="text-lg md:text-xl font-serif text-primary mb-2">Continental Delights</h4>
+                        <p class="text-xs md:text-sm text-gray-500 mb-4">Stuffed Chicken, Beef Steaks, Creamy Pastas, Fresh Salads.</p>
+                        <div class="w-full h-[1px] bg-gray-100 mb-4"></div>
+                        <span class="text-[10px] md:text-xs tracking-widest text-gold uppercase font-bold">Modern</span>
+                    </div>
+                    <!-- Menu Item 4 -->
+                    <div class="gsap-stagger-item bg-white p-6 md:p-8 shadow-sm border-t-4 border-transparent hover:border-gold transition-all duration-300 md:mt-8">
+                        <h4 class="text-lg md:text-xl font-serif text-primary mb-2">Artisan Desserts</h4>
+                        <p class="text-xs md:text-sm text-gray-500 mb-4">Shahi Tukray, Kheer, Chocolate Mousse, Live Jalebi.</p>
+                        <div class="w-full h-[1px] bg-gray-100 mb-4"></div>
+                        <span class="text-[10px] md:text-xs tracking-widest text-gold uppercase font-bold">Sweet Finale</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Image Gallery -->
+    <section id="gallery" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 text-center mb-10 md:mb-16">
+            <h2 class="gsap-reveal text-3xl md:text-4xl lg:text-5xl font-serif text-primary">A Glimpse of Perfection</h2>
+            <p class="gsap-reveal text-sm md:text-base text-gray-500 mt-3 md:mt-4 max-w-2xl mx-auto font-light">Explore moments of beauty, grand setups, and exquisite details crafted by our artisans.</p>
+        </div>
+
+        <div class="max-w-[100rem] mx-auto px-4 sm:px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-4 auto-rows-[150px] sm:auto-rows-[200px] md:auto-rows-[300px] gsap-stagger-parent">
+                <div class="gsap-stagger-item overflow-hidden rounded-sm relative group col-span-2 row-span-2">
+                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=80" alt="Gallery Event Setup" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all duration-500"></div>
+                </div>
+                <div class="gsap-stagger-item overflow-hidden rounded-sm relative group">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80" alt="Gallery Food" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all duration-500"></div>
+                </div>
+                <div class="gsap-stagger-item overflow-hidden rounded-sm relative group">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=600&q=80" alt="Gallery Decor" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all duration-500"></div>
+                </div>
+                <div class="gsap-stagger-item col-span-2 overflow-hidden rounded-sm relative group">
+                    <img src="https://pakwancenter.com/wp-content/uploads/2024/07/Untitled-design-7-1.jpg" alt="Gallery Corporate Gala" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-all duration-500"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 md:py-24 bg-primary text-white relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+                
+                <!-- Contact Info -->
+                <div class="w-full lg:w-5/12 text-center lg:text-left">
+                    <h2 class="gsap-reveal text-3xl md:text-4xl lg:text-5xl font-serif mb-4 md:mb-6">Let's Plan Your Big Day</h2>
+                    <p class="gsap-reveal text-sm md:text-base text-gray-400 font-light mb-8 md:mb-10 max-w-md mx-auto lg:mx-0">
+                        Visit our office in Lahore or reach out to schedule a private tasting and consultation session.
+                    </p>
+
+                    <div class="space-y-6 md:space-y-8 gsap-stagger-parent max-w-md mx-auto lg:mx-0">
+                        <div class="gsap-stagger-item flex items-start space-x-4 text-left">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-map-marker-alt text-gold text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-serif text-base md:text-lg">Head Office</h5>
+                                <p class="text-gray-400 text-xs md:text-sm mt-1">Lahore, Punjab, Pakistan<br>(Serving all major venues in Lahore)</p>
+                                <a href="https://maps.app.goo.gl/n6zRkKBcy5RxqLGY9" target="_blank" class="text-gold text-xs md:text-sm inline-block mt-2 hover:underline">Get Directions</a>
+                            </div>
+                        </div>
+
+                        <div class="gsap-stagger-item flex items-start space-x-4 text-left">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-phone-alt text-gold text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-serif text-base md:text-lg">Direct Line</h5>
+                                <p class="text-gray-400 text-xs md:text-sm mt-1">+92 300 0000000</p>
+                            </div>
+                        </div>
+
+                        <div class="gsap-stagger-item flex items-start space-x-4 text-left">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gold/10 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-envelope text-gold text-lg md:text-xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-serif text-base md:text-lg">Email</h5>
+                                <p class="text-gray-400 text-xs md:text-sm mt-1">events@lahorecateringco.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="w-full lg:w-7/12 bg-white/5 p-6 md:p-8 rounded-sm backdrop-blur-sm border border-white/10 gsap-reveal mt-8 lg:mt-0">
+                    <form onsubmit="event.preventDefault(); showMessage();" class="space-y-5 md:space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                            <div>
+                                <label class="block text-[10px] md:text-xs uppercase tracking-wider text-gray-400 mb-1 md:mb-2">Full Name</label>
+                                <input type="text" required class="w-full bg-transparent border-b border-gray-600 pb-2 text-sm md:text-base text-white focus:outline-none focus:border-gold transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] md:text-xs uppercase tracking-wider text-gray-400 mb-1 md:mb-2">Phone Number</label>
+                                <input type="tel" required class="w-full bg-transparent border-b border-gray-600 pb-2 text-sm md:text-base text-white focus:outline-none focus:border-gold transition-colors">
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+                            <div>
+                                <label class="block text-[10px] md:text-xs uppercase tracking-wider text-gray-400 mb-1 md:mb-2">Event Date</label>
+                                <input type="date" class="w-full bg-transparent border-b border-gray-600 pb-2 text-sm md:text-base text-white focus:outline-none focus:border-gold transition-colors" style="color-scheme: dark;">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] md:text-xs uppercase tracking-wider text-gray-400 mb-1 md:mb-2">Guest Count</label>
+                                <input type="number" class="w-full bg-transparent border-b border-gray-600 pb-2 text-sm md:text-base text-white focus:outline-none focus:border-gold transition-colors">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] md:text-xs uppercase tracking-wider text-gray-400 mb-1 md:mb-2">Event Details</label>
+                            <textarea rows="3" class="w-full bg-transparent border-b border-gray-600 pb-2 text-sm md:text-base text-white focus:outline-none focus:border-gold transition-colors resize-none md:rows-4"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-gold text-primary font-semibold py-3 md:py-4 text-sm md:text-base uppercase tracking-wider hover:bg-white transition-colors duration-300 mt-2">
+                            Send Inquiry
+                        </button>
+                    </form>
+                    <!-- Custom Message Box (Alternative to alert) -->
+                    <div id="form-message" class="hidden mt-4 p-4 bg-green-500/20 border border-green-500 text-green-300 rounded text-center">
+                        Thank you! Your inquiry has been received. We will contact you shortly.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary border-t border-white/10 pt-16 pb-8 text-center text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h3 class="text-3xl font-serif mb-6">Lahore Catering & Decor Co.</h3>
+            <div class="flex justify-center space-x-6 mb-8">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-primary transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-primary transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-gold hover:text-primary transition-colors"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <p class="text-gray-500 text-sm font-light">
+                &copy; 2026 Lahore Catering & Decor Co. Designed for Premium Events.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Form submission message handling (No alerts used)
+        function showMessage() {
+            const msgBox = document.getElementById('form-message');
+            msgBox.classList.remove('hidden');
+            setTimeout(() => {
+                msgBox.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                menu.classList.remove('opacity-0', 'pointer-events-none');
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                menu.classList.add('opacity-0', 'pointer-events-none');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+        links.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-primary', 'shadow-lg');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('bg-primary', 'shadow-lg');
+                navbar.classList.add('py-4');
+                navbar.classList.remove('py-2');
+            }
+        });
+
+        // GSAP Animations Registration
+        document.addEventListener("DOMContentLoaded", (event) => {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Animations (Timeline)
+            const tl = gsap.timeline();
+            
+            // Text clipping effect for title
+            tl.from(".hero-text", { y: 30, opacity: 0, duration: 1, delay: 0.2, ease: "power3.out" })
+              .from(".hero-title", { 
+                  y: 50, 
+                  opacity: 0, 
+                  duration: 1.2, 
+                  ease: "power4.out" 
+              }, "-=0.6")
+              .to(".hero-btn", { opacity: 1, y: -10, duration: 0.8, ease: "power2.out" }, "-=0.4");
+
+            // Parallax Hero Image
+            gsap.to(".hero-img", {
+                yPercent: 20,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "section",
+                    start: "top top", 
+                    end: "bottom top",
+                    scrub: true
+                }
+            });
+
+            // Standard Fade & Slide Up elements
+            gsap.utils.toArray('.gsap-reveal').forEach(elem => {
+                gsap.fromTo(elem, 
+                    { autoAlpha: 0, y: 50 }, 
+                    { 
+                        autoAlpha: 1, 
+                        y: 0, 
+                        duration: 1, 
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: elem,
+                            start: "top 85%", // reveals when top of element hits 85% of viewport
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+
+            // Staggered Group Reveals (Cards, Lists)
+            gsap.utils.toArray('.gsap-stagger-parent').forEach(parent => {
+                const items = parent.querySelectorAll('.gsap-stagger-item');
+                gsap.fromTo(items, 
+                    { autoAlpha: 0, y: 50 }, 
+                    { 
+                        autoAlpha: 1, 
+                        y: 0, 
+                        duration: 0.8, 
+                        stagger: 0.2, 
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: parent,
+                            start: "top 80%",
+                            toggleActions: "play none none reverse"
+                        }
+                    }
+                );
+            });
+
+            // Image Mask/Scale reveals
+            gsap.utils.toArray('.gsap-scale').forEach(img => {
+                gsap.fromTo(img,
+                    { scale: 1.3, autoAlpha: 0 },
+                    {
+                        scale: 1,
+                        autoAlpha: 1,
+                        duration: 1.5,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: img,
+                            start: "top 85%",
+                        }
+                    }
+                );
+            });
+        });
+    </script>
+</body>
+</html>
