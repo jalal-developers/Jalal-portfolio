@@ -1,34 +1,34 @@
 import React from 'react'
 import { Rocket, Palette, Settings, Database } from 'lucide-react'
 
-export default function Services() {
-  const services = [
-    {
-      id: 1,
-      title: 'Web Development',
-      description: 'Full-stack web applications using React, Node.js, and modern technologies.',
-      icon: <Rocket size={40} className="text-primary" />,
-    },
-    {
-      id: 2,
-      title: 'UI/UX Design',
-      description: 'Responsive and beautiful user interfaces with focus on user experience.',
-      icon: <Palette size={40} className="text-primary" />,
-    },
-    {
-      id: 3,
-      title: 'API Development',
-      description: 'RESTful APIs and backend solutions for scalable applications.',
-      icon: <Settings size={40} className="text-primary" />,
-    },
-    {
-      id: 4,
-      title: 'Database Design',
-      description: 'Efficient database structures with MongoDB and PostgreSQL.',
-      icon: <Database size={40} className="text-primary" />,
-    },
-  ]
+const services = [
+  {
+    id: 1,
+    title: 'Web Development',
+    description: 'Full-stack web applications using React, Node.js, and modern technologies.',
+    icon: <Rocket size={40} className="text-primary" />,
+  },
+  {
+    id: 2,
+    title: 'UI/UX Design',
+    description: 'Responsive and beautiful user interfaces with focus on user experience.',
+    icon: <Palette size={40} className="text-primary" />,
+  },
+  {
+    id: 3,
+    title: 'API Development',
+    description: 'RESTful APIs and backend solutions for scalable applications.',
+    icon: <Settings size={40} className="text-primary" />,
+  },
+  {
+    id: 4,
+    title: 'Database Design',
+    description: 'Efficient database structures with MongoDB and PostgreSQL.',
+    icon: <Database size={40} className="text-primary" />,
+  },
+]
 
+export default function Services() {
   return (
     <section id="services" className="services">
       <div className="services-container">
