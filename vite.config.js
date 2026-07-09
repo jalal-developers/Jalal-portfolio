@@ -8,4 +8,9 @@ export default defineConfig({
     react(),
     cssInjectedByJsPlugin()
   ],
+  test: {
+    environment: 'jsdom',
+    setupFiles: ['./vitest.setup.js'],
+    globals: true,
+  },
 })
