@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Check } from 'lucide-react'
 
 export default function Pricing() {
@@ -82,13 +82,17 @@ export default function Pricing() {
     },
   ]
 
-  const formatPrice = (priceUSD) => {
-    const converted = priceUSD * exchangeRate;
+  const formatter = useMemo(() => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: currency,
       maximumFractionDigits: 0
-    }).format(converted);
+    });
+  }, [currency]);
+
+  const formatPrice = (priceUSD) => {
+    const converted = priceUSD * exchangeRate;
+    return formatter.format(converted);
   }
 
   return (
