@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Check } from 'lucide-react'
 
 export default function Pricing() {
@@ -6,33 +6,42 @@ export default function Pricing() {
   const [exchangeRate, setExchangeRate] = useState(1)
 
   useEffect(() => {
-    // Determine user location
-    fetch('https://ipapi.co/json/')
-      .then(res => res.json())
-      .then(data => {
-        let userCurrency = 'USD'
-        if (data.country_code === 'PK') {
-          userCurrency = 'PKR'
-          setExchangeRate(278) // fallback
-        } else if (data.country_code === 'IN') {
-          userCurrency = 'INR'
-          setExchangeRate(83) // fallback
+    Promise.all([
+      fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .catch(err => {
+          console.error("Could not fetch location", err);
+          return null;
+        }),
+      fetch('https://open.er-api.com/v6/latest/USD')
+        .then(res => res.json())
+        .catch(err => {
+          console.error("Could not fetch live rates", err);
+          return null;
+        })
+    ]).then(([locationData, ratesData]) => {
+      let userCurrency = 'USD';
+
+      if (locationData) {
+        if (locationData.country_code === 'PK') {
+          userCurrency = 'PKR';
+          setExchangeRate(278); // fallback
+        } else if (locationData.country_code === 'IN') {
+          userCurrency = 'INR';
+          setExchangeRate(83); // fallback
         }
-        setCurrency(userCurrency)
-        
-        // Fetch live exchange rates
-        fetch('https://open.er-api.com/v6/latest/USD')
-          .then(res => res.json())
-          .then(ratesData => {
-            if (userCurrency === 'PKR' && ratesData.rates.PKR) {
-              setExchangeRate(ratesData.rates.PKR)
-            } else if (userCurrency === 'INR' && ratesData.rates.INR) {
-              setExchangeRate(ratesData.rates.INR)
-            }
-          })
-          .catch(err => console.error("Could not fetch live rates", err))
-      })
-      .catch(err => console.error("Could not fetch location", err))
+      }
+
+      setCurrency(userCurrency);
+
+      if (ratesData && ratesData.rates) {
+        if (userCurrency === 'PKR' && ratesData.rates.PKR) {
+          setExchangeRate(ratesData.rates.PKR);
+        } else if (userCurrency === 'INR' && ratesData.rates.INR) {
+          setExchangeRate(ratesData.rates.INR);
+        }
+      }
+    });
   }, [])
 
   const plans = [
@@ -82,13 +91,17 @@ export default function Pricing() {
     },
   ]
 
-  const formatPrice = (priceUSD) => {
-    const converted = priceUSD * exchangeRate;
+  const formatter = useMemo(() => {
     return new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: currency,
       maximumFractionDigits: 0
-    }).format(converted);
+    });
+  }, [currency]);
+
+  const formatPrice = (priceUSD) => {
+    const converted = priceUSD * exchangeRate;
+    return formatter.format(converted);
   }
 
   return (

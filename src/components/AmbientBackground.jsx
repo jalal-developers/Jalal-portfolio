@@ -1,4 +1,4 @@
-import React from 'react';
+
 import './AmbientBackground.css';
 
 export default function AmbientBackground() {
