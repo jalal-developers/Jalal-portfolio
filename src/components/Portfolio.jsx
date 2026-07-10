@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Dumbbell, Scissors, Flower2, Car, Cpu, Utensils } from 'lucide-react'
 
 export default function Portfolio() {

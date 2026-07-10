@@ -4,13 +4,13 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    cssInjectedByJsPlugin()
-  ],
-  test: {
-    environment: 'jsdom',
-    setupFiles: ['./vitest.setup.js'],
-    globals: true,
-  },
+    plugins: [
+        react(),
+        cssInjectedByJsPlugin()
+    ],
+    test: {
+        environment: 'jsdom',
+        globals: true,
+        setupFiles: './src/setupTests.js',
+    },
 })
