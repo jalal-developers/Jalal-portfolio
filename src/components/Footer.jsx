@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Mail, Phone, Shield, FileText } from 'lucide-react'
 
 const Linkedin = ({ size, className }) => (

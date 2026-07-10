@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Rocket, Palette, Settings, Database } from 'lucide-react'
 
 const services = [
