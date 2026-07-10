@@ -1,4 +1,4 @@
-import React, { useEffect, Suspense, lazy } from 'react'
+import { useEffect, Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import AOS from 'aos'
